@@ -1,5 +1,9 @@
+import { SeriesPage } from './../series/series';
+import { MoviesPage } from './../movies/movies';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { NewsPage } from '../news/news';
+import { OthersPage } from '../others/others';
 
 /**
  * Generated class for the TabsPage tabs.
@@ -15,10 +19,10 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class TabsPage {
 
-  moviesRoot = 'MoviesPage'
-  seriesRoot = 'SeriesPage'
-  newsRoot = 'NewsPage'
-  othersRoot = 'OthersPage'
+  moviesRoot = MoviesPage
+  seriesRoot = SeriesPage
+  newsRoot = NewsPage
+  othersRoot = OthersPage
 
 
   constructor(public navCtrl: NavController) {}

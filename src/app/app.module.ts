@@ -11,6 +11,7 @@ import { MoviesPageModule } from '../pages/movies/movies.module';
 import { SeriesPageModule } from '../pages/series/series.module';
 import { NewsPageModule } from '../pages/news/news.module';
 import { OthersPageModule } from '../pages/others/others.module';
+import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OthersPageModule } from '../pages/others/others.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider
   ]
 })
 export class AppModule {}
