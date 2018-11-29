@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MoviesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { RestProvider } from '../../providers/rest/rest';
 
 @IonicPage()
 @Component({
@@ -15,8 +9,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MoviesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  movies: any;
+
+  constructor(public navCtrl: NavController, public restProvider: RestProvider) { }
+
+  getMovies(event) {
+    this.restProvider.getMovies(event.target.value)
+        .then(data => {
+          this.movies = data['Search'];
+          console.log(this.movies);
+        });
   }
+
+  movieSelected(movie){
+      console.log("click"+movie.get);
+      this.navCtrl.push(MoviesPage,{movie:movie});
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoviesPage');

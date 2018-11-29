@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -13,6 +14,7 @@ import { NewsPageModule } from '../pages/news/news.module';
 import { OthersPageModule } from '../pages/others/others.module';
 import { RestProvider } from '../providers/rest/rest';
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,6 +27,7 @@ import { RestProvider } from '../providers/rest/rest';
     SeriesPageModule,
     NewsPageModule,
     OthersPageModule,
+    HttpClientModule,
     
     IonicModule.forRoot(MyApp)
   ],
