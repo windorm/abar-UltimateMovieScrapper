@@ -1,21 +1,21 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Movies</ion-title>
+    <ion-title>🎞 Movies</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="card-background-page">
 
     <ion-list inset>
         <ion-searchbar animated="true" [(ngModel)]="selectedTitle" (ionInput)="getMovies($event);" [showCancelButton]="shouldShowCancel" ></ion-searchbar>
-        <ion-item *ngFor="let movie of movies" (click)="movieSelected(movie)">
-          <ion-thumbnail item-start>
-            <img src="{{movie.Poster}}" style="background-color: black;">
-          </ion-thumbnail>
-          <h2>{{movie.Title}}</h2>
-          <p>{{movie.Year}}</p>
-        </ion-item>
+        <ion-card *ngFor="let movie of movies" (click)="movieSelected(movie)">
+            <img src="{{movie.Poster}}">
+            <div class="card-title">{{movie.Title}}</div>
+            <div class="card-title2">☞ Get more informations about <strong>{{movie.Title}}</strong>.</div>
+            <div class="card-subtitle">{{movie.Year}}</div>
+        </ion-card>
+
       </ion-list>
     
 </ion-content>
