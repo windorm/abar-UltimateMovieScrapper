@@ -25674,6 +25674,11 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-details .card-background-page {
+  background-color: black;
+  color: #fff;
+}
+
 page-movies .card-background-page {
   background-color: black;
 }

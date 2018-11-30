@@ -1,3 +1,4 @@
+import { DetailsPage } from '../details/details';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
@@ -23,7 +24,7 @@ export class MoviesPage {
 
   movieSelected(movie){
       console.log("click"+movie.get);
-      this.navCtrl.push(MoviesPage,{movie:movie});
+      this.navCtrl.push(DetailsPage,{movie:movie});
   }
 
 

@@ -1,3 +1,4 @@
+import { DetailsPage } from './../pages/details/details';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { MoviesPageModule } from '../pages/movies/movies.module';
 import { SeriesPageModule } from '../pages/series/series.module';
 import { NewsPageModule } from '../pages/news/news.module';
 import { OthersPageModule } from '../pages/others/others.module';
+import { DetailsPageModule } from '../pages/details/details.module';
 import { RestProvider } from '../providers/rest/rest';
 
 
@@ -28,6 +30,7 @@ import { RestProvider } from '../providers/rest/rest';
     NewsPageModule,
     OthersPageModule,
     HttpClientModule,
+    DetailsPageModule,
     
     IonicModule.forRoot(MyApp)
   ],

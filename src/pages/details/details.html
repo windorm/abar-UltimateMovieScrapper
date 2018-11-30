@@ -1,0 +1,36 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>{{movie.Title}}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content class="card-background-page" padding>
+      <h1>{{movie.Title}}</h1>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <img src="{{movie.Poster}}">
+            <h4>Rating : </h4><p>{{movie.imdbRating}}/10 ({{movie.imdbVotes}}votes)</p>
+          </ion-col>
+  
+          <ion-col col-9>
+            <div><h4>Release date : </h4><p>{{movie.Released}} ({{movie.Runtime}}) </p></div>
+            <h4>By : </h4><p>{{movie.Director}}</p>
+            <h4>With : </h4><p>{{movie.Actors}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+  
+            <h4>Synopsys : </h4><p>{{movie.Plot}}</p>
+            <h4>Genre : </h4><p>{{movie.Genre}}</p>
+            <h4>Rated : </h4><p>{{movie.Rated}}</p>
+            <h4>More details  : </h4><p>{{movie.Website}}</p>
+  
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+    </ion-content>
