@@ -1,44 +1,47 @@
 page-movies {
 
-    .card-background-page {
-      background-color: black;
-        ion-card {
-          position: relative;
-          text-align: center;
-        }
-      
-        .card-title {
-          position: absolute;
-          top: 20%;
-          font-size: 1.3em;
-          width: 25%;
-          font-weight: bold;
-          color: #fff;
-          background-color: black;
-        }
-      
-        .card-subtitle {
-          font-size: 0.8em;
-          position: absolute;
-          top: 80%;
-          width: 25%;
-          color: #fff;
-          background-color: black;
-        }
+.page-content{
+  background: color($colors, dark);
+}
 
-        img {
-            filter: brightness(40%);
-            width: 25%;
-        }
-    
-        .card-title2 {
-          padding-left: 30%;
-          padding-right: 5%;
-          position: absolute;
-          top: 50%;
-          font-size: 1.1em;
-          color: #000;
-      }
-      
-    }
+ion-card {
+  position: relative;
+  text-align: center;
+}
+
+.card-title{
+    // position: absolute;
+    // top: 30%;
+    font-size: 0.9em;
+    width: 100%;
+    // font-weight: bold;
+    color: #ecf0f1;
+    background: transparent;
+}
+
+.card{
+  background: color($colors, dark);
+}
+.card-subtitle {
+  font-size: 1.0em;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  color:#ecf0f1;
+  background-color: black;
+}
+
+.scroll-content{
+  overflow: auto;
+}
+
+.options_button{
+  color: #ecf0f1 !important;
+  border-bottom-color: color($colors, danger) !important;
+}
+.search-bar{
+  max-width: 60%;
+}
+
+
 }

@@ -1,36 +1,68 @@
-<ion-header>
+<ion-header class='de'>
 
-    <ion-navbar>
-      <ion-title>{{movie.Title}}</ion-title>
-    </ion-navbar>
+  <ion-navbar color='dark'>
+    <ion-title>
+      {{movie.Title}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
   
-  </ion-header>
-  
-  <ion-content class="card-background-page" padding>
-      <h1>{{movie.Title}}</h1>
-      <ion-grid>
+
+
+    <ion-content class='page-content' padding>
+
+      <ion-card *ngIf="this.movie; let movie">
+        <img src="{{movie.Poster}}">
+    
+        <div class="card-subtitle">
+          <ion-list>
+            <ion-item class="item-info">
+              <ion-badge class="badge-info" item-start>{{movie.Genre}}</ion-badge>
+            </ion-item>
+            <ion-item class="item-info">
+              <ion-badge  item-start class="badge-info">{{movie.Director}}</ion-badge>
+            </ion-item>
+            <ion-item class="item-info">
+              <ion-badge  item-start class="badge-info">{{movie.Actors}}</ion-badge>
+            </ion-item>
+          </ion-list>
+    
+          <ion-row class="small-padding">
+            <ion-col>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='star'></ion-icon>
+                <strong>{{movie.imdbRating}}/10</strong><i>({{movie.imdbVotes}}votes)</i>
+              </button>
+            </ion-col>
+            <ion-col text-center>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='calendar'></ion-icon>
+              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}})</i>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='close-circle'></ion-icon>
+                {{movie.Rated}}
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-card-content>
+          {{movie.Plot}}
+        </ion-card-content>
+    
         <ion-row>
-          <ion-col col-3>
-            <img src="{{movie.Poster}}">
-            <h4>Rating : </h4><p>{{movie.imdbRating}}/10 ({{movie.imdbVotes}}votes)</p>
-          </ion-col>
-  
-          <ion-col col-9>
-            <div><h4>Release date : </h4><p>{{movie.Released}} ({{movie.Runtime}}) </p></div>
-            <h4>By : </h4><p>{{movie.Director}}</p>
-            <h4>With : </h4><p>{{movie.Actors}}</p>
+          <ion-col text-right>
+            <a href="{{movie.Website}}" ion-button clear small color="danger" icon-start>
+              <ion-icon name='link'></ion-icon>
+              Get More Details
+            </a>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-12>
-  
-            <h4>Synopsys : </h4><p>{{movie.Plot}}</p>
-            <h4>Genre : </h4><p>{{movie.Genre}}</p>
-            <h4>Rated : </h4><p>{{movie.Rated}}</p>
-            <h4>More details  : </h4><p>{{movie.Website}}</p>
-  
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  
+    
+      </ion-card>
+    
     </ion-content>
+    
