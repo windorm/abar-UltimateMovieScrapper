@@ -21,10 +21,21 @@ export class RestProvider {
     });
   }
 
+  getSeries(event) {
+    console.log(event);
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'&s='+event+'&type=series').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
   getMovie(id) {
     console.log(id);
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'&i='+id).subscribe(data => {
+      this.http.get(this.apiUrl+'&i='+id+'&plot=full').subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);

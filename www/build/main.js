@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 111:
+/***/ 112:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,16 +13,16 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 111;
+webpackEmptyAsyncContext.id = 112;
 
 /***/ }),
 
-/***/ 154:
+/***/ 155:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/details/details.module": [
-		155
+		156
 	],
 	"../pages/movies/movies.module": [
 		157
@@ -51,12 +51,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 154;
+webpackAsyncContext.id = 155;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 155:
+/***/ 156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64,7 +64,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetailsPageModule", function() { return DetailsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__details__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__details__ = __webpack_require__(78);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -91,66 +91,6 @@ var DetailsPageModule = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=details.module.js.map
-
-/***/ }),
-
-/***/ 156:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetailsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(77);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/**
- * Generated class for the DetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var DetailsPage = /** @class */ (function () {
-    function DetailsPage(navCtrl, navParams, restProvider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.restProvider = restProvider;
-        var movie = this.navParams.get('movie');
-        this.movie = movie;
-        this.id = movie.imdbID;
-        this.getMovie(this.id);
-    }
-    DetailsPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad DetailsPage');
-    };
-    DetailsPage.prototype.getMovie = function (id) {
-        var _this = this;
-        this.restProvider.getMovie(id)
-            .then(function (data) {
-            _this.movie = data;
-            console.log(_this.movie);
-        });
-    };
-    DetailsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-details',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/'<ion-header class=\'de\'>\n\n  <ion-navbar color=\'dark\'>\n    <ion-title>\n      {{movie.Title}}\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n  \n\n\n    <ion-content class=\'page-content\' padding>\n\n      <ion-card *ngIf="this.movie; let movie">\n        <img src="{{movie.Poster}}">\n    \n        <div class="card-subtitle">\n          <ion-list>\n            <ion-item class="item-info">\n              <ion-badge class="badge-info" item-start>{{movie.Genre}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Director}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Actors}}</ion-badge>\n            </ion-item>\n          </ion-list>\n    \n          <ion-row class="small-padding">\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'star\'></ion-icon>\n                <strong>{{movie.imdbRating}}/10</strong><i>({{movie.imdbVotes}}votes)</i>\n              </button>\n            </ion-col>\n            <ion-col text-center>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'calendar\'></ion-icon>\n              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}})</i>\n              </button>\n            </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'close-circle\'></ion-icon>\n                {{movie.Rated}}\n              </button>\n            </ion-col>\n          </ion-row>\n        </div>\n        <ion-card-content>\n          {{movie.Plot}}\n        </ion-card-content>\n    \n        <ion-row>\n            <ion-col text-left>\n                <a href="#" ion-button clear small color="danger" icon-start>\n                  <ion-icon name=\'bookmark\'></ion-icon>\n                  Add To Favorites\n                </a>\n              </ion-col>\n          <ion-col text-right>\n            <a href="{{movie.Website}}" ion-button clear small color="danger" icon-start>\n              <ion-icon name=\'link\'></ion-icon>\n              Get More Details\n            </a>\n          </ion-col>\n        </ion-row>\n    \n      </ion-card>\n    \n    </ion-content>\n    \n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]])
-    ], DetailsPage);
-    return DetailsPage;
-}());
-
-//# sourceMappingURL=details.js.map
 
 /***/ }),
 
@@ -197,10 +137,10 @@ var MoviesPageModule = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoviesPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__details_details__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__details_details__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -238,10 +178,9 @@ var MoviesPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
             selector: 'page-movies',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/movies/movies.html"*/'<ion-header>\n  <ion-navbar color=\'dark\'>\n    <ion-title>🎞 Movies</ion-title>\n  </ion-navbar>\n  <ion-searchbar animated="true" [(ngModel)]="selectedTitle" (ionInput)="getMovies($event)" [showCancelButton]="false" ></ion-searchbar>\n</ion-header>\n\n<ion-content padding class=\'page-content\'>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col col-6 col-md-4 col-lg-2 *ngFor=\'let movie of movies\' >\n\n    <ion-card class=\'card\'  class="movie-info" (click)="movieSelected(movie)">\n\n      <ion-card-title #popoverText  class="card-title">\n        {{movie.Title}}\n      </ion-card-title>\n\n      <img src="{{movie.Poster}}">\n\n      <div class="card-subtitle">\n        <ion-row>\n          <ion-col>\n              <ion-icon name="calendar"></ion-icon>\n              <div>{{movie.Year}}</div>\n          </ion-col>\n        </ion-row>\n      </div>\n\n    </ion-card>\n\n\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/movies/movies.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]])
     ], MoviesPage);
     return MoviesPage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=movies.js.map
@@ -457,8 +396,10 @@ var SeriesPageModule = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SeriesPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__details_details__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -470,6 +411,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 /**
  * Generated class for the SeriesPage page.
  *
@@ -477,18 +420,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var SeriesPage = /** @class */ (function () {
-    function SeriesPage(navCtrl, navParams) {
+    function SeriesPage(navCtrl, restProvider) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
+        this.restProvider = restProvider;
     }
+    SeriesPage.prototype.getSeries = function (event) {
+        var _this = this;
+        this.restProvider.getSeries(event.target.value)
+            .then(function (data) {
+            _this.movies = data['Search'];
+            console.log(_this.movies);
+        });
+    };
+    SeriesPage.prototype.movieSelected = function (movie) {
+        console.log("click" + movie.get);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__details_details__["a" /* DetailsPage */], { movie: movie });
+    };
     SeriesPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SeriesPage');
     };
     SeriesPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-series',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/series/series.html"*/'<!--\n  Generated template for the SeriesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Series</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n    <ion-searchbar\n    [(ngModel)]="myInput"\n    [showCancelButton]="shouldShowCancel"\n    (ionInput)="onInput($event)"\n    (ionCancel)="onCancel($event)">\n  </ion-searchbar>\n\n</ion-content>\n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/series/series.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
+            selector: 'page-series',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/series/series.html"*/'<ion-header>\n    <ion-navbar color=\'dark\'>\n      <ion-title>Series</ion-title>\n    </ion-navbar>\n    <ion-searchbar animated="true" [(ngModel)]="selectedTitle" (ionInput)="getSeries($event)" [showCancelButton]="false" ></ion-searchbar>\n  </ion-header>\n  \n  <ion-content padding class=\'page-content\'>\n  \n    <ion-grid>\n      <ion-row>\n        <ion-col col-6 col-md-4 col-lg-2 *ngFor=\'let movie of movies\' >\n  \n      <ion-card class=\'card\'  class="movie-info" (click)="movieSelected(movie)">\n  \n        <ion-card-title #popoverText  class="card-title">\n          {{movie.Title}}\n        </ion-card-title>\n  \n        <img src="{{movie.Poster}}">\n  \n        <div class="card-subtitle">\n          <ion-row>\n            <ion-col>\n                <ion-icon name="calendar"></ion-icon>\n                <div>{{movie.Year}}</div>\n            </ion-col>\n          </ion-row>\n        </div>\n  \n      </ion-card>\n  \n  \n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  \n  </ion-content>\n  '/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/series/series.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]])
     ], SeriesPage);
     return SeriesPage;
 }());
@@ -607,7 +562,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(11);
@@ -620,8 +575,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_series_series_module__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_news_news_module__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_others_others_module__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_details_details_module__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_rest_rest__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_details_details_module__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_rest_rest__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -773,12 +728,12 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 77:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -808,11 +763,22 @@ var RestProvider = /** @class */ (function () {
             });
         });
     };
+    RestProvider.prototype.getSeries = function (event) {
+        var _this = this;
+        console.log(event);
+        return new Promise(function (resolve) {
+            _this.http.get(_this.apiUrl + '&s=' + event + '&type=series').subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     RestProvider.prototype.getMovie = function (id) {
         var _this = this;
         console.log(id);
         return new Promise(function (resolve) {
-            _this.http.get(_this.apiUrl + '&i=' + id).subscribe(function (data) {
+            _this.http.get(_this.apiUrl + '&i=' + id + '&plot=full').subscribe(function (data) {
                 resolve(data);
             }, function (err) {
                 console.log(err);
@@ -828,6 +794,66 @@ var RestProvider = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=rest.js.map
+
+/***/ }),
+
+/***/ 78:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetailsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(46);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the DetailsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var DetailsPage = /** @class */ (function () {
+    function DetailsPage(navCtrl, navParams, restProvider) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.restProvider = restProvider;
+        var movie = this.navParams.get('movie');
+        this.movie = movie;
+        this.id = movie.imdbID;
+        this.getMovie(this.id);
+    }
+    DetailsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DetailsPage');
+    };
+    DetailsPage.prototype.getMovie = function (id) {
+        var _this = this;
+        this.restProvider.getMovie(id)
+            .then(function (data) {
+            _this.movie = data;
+            console.log(_this.movie);
+        });
+    };
+    DetailsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-details',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/'<ion-header class=\'de\'>\n\n  <ion-navbar color=\'dark\'>\n    <ion-title>\n      {{movie.Title}}\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n  \n\n\n    <ion-content class=\'page-content\' padding>\n\n      <ion-card *ngIf="this.movie; let movie">\n        <img src="{{movie.Poster}}">\n    \n        <div class="card-subtitle">\n          <ion-list>\n            <ion-item class="item-info">\n              <ion-badge class="badge-info" item-start>{{movie.Genre}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Director}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Actors}}</ion-badge>\n            </ion-item>\n          </ion-list>\n    \n          <ion-row class="small-padding">\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'star-half\'></ion-icon>\n                <strong>{{movie.imdbRating}}/10</strong><i>({{movie.imdbVotes}}votes)</i>\n              </button>\n            </ion-col>\n            <ion-col text-center>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'calendar\'></ion-icon>\n              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}})</i>\n              </button>\n            </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'close-circle\'></ion-icon>\n                {{movie.Rated}}\n              </button>\n            </ion-col>\n          </ion-row>\n        </div>\n        <ion-card-content>\n          {{movie.Plot}}\n        </ion-card-content>\n    \n        <ion-row>\n            <ion-col text-left>\n                <a href="#" ion-button clear small color="danger" icon-start>\n                  <ion-icon name=\'bookmark\'></ion-icon>\n                  Add To Favorites\n                </a>\n              </ion-col>\n          <ion-col text-right>\n            <a href="{{movie.Website}}" ion-button clear small color="danger" icon-start>\n              <ion-icon name=\'link\'></ion-icon>\n              Get More Details\n            </a>\n          </ion-col>\n        </ion-row>\n    \n      </ion-card>\n    \n    </ion-content>\n    \n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]])
+    ], DetailsPage);
+    return DetailsPage;
+}());
+
+//# sourceMappingURL=details.js.map
 
 /***/ })
 
