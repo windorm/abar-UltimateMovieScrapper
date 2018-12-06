@@ -13,7 +13,7 @@ export class RestProvider {
   getMovies(event) {
     console.log(event);
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'&s='+event).subscribe(data => {
+      this.http.get(this.apiUrl+'&s='+event+'&type=movie').subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
