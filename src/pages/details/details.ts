@@ -1,3 +1,4 @@
+import { FavoritesProvider } from './../../providers/favorites/favorites';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
@@ -16,10 +17,11 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class DetailsPage {
 
-  movie:any;
-  id:any;
+  movie: any;
+  id: any;
+  image: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public FavoritesProvider: FavoritesProvider) {
     let movie = this.navParams.get('movie');
     this.movie = movie;
     this.id = movie.imdbID;
@@ -38,5 +40,15 @@ export class DetailsPage {
         });
   }
 
+  getImage(id) {
+    this.restProvider.getImage(id)
+        .then(image => {
+            console.log(this.image);
+        });
+}
+
+addToFavorites(){
+    this.FavoritesProvider.addMedia(this.movie);
+}
 
 }

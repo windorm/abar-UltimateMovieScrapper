@@ -1,6 +1,8 @@
 {
   "name": "abar-UltimateMovieScrapper",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "pro_id": "0d7ceee1"
 }

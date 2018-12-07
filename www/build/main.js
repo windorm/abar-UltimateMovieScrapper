@@ -230,8 +230,11 @@ var NewsPageModule = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__details_details__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_utils_toast__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_favorites_favorites__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(11);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -243,6 +246,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 /**
  * Generated class for the NewsPage page.
  *
@@ -250,20 +256,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var NewsPage = /** @class */ (function () {
-    function NewsPage(navCtrl, navParams) {
+    function NewsPage(navCtrl, navParams, favorite, toastController) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.favorite = favorite;
+        this.toastController = toastController;
+        this.medias = [];
     }
     NewsPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         console.log('ionViewDidLoad NewsPage');
+        this.favorite.onChange.subscribe(function (medias) {
+            _this.medias = medias;
+        }, console.error);
+        this.favorite.load();
+    };
+    NewsPage.prototype.movieSelected = function (movie) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__details_details__["a" /* DetailsPage */], { movie: movie });
+    };
+    NewsPage.prototype.removeMedia = function (medias) {
+        this.favorite.removeMedia(medias);
+        Object(__WEBPACK_IMPORTED_MODULE_1__app_utils_toast__["a" /* showToast */])(this.toastController, medias.Title + " has been deleted from the list.");
     };
     NewsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-news',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/news/news.html"*/'<ion-header>\n    <ion-navbar color=\'dark\'>\n      <ion-title>\n          <ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon> Favorites\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/news/news.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["m" /* Component */])({
+            selector: 'page-news',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/news/news.html"*/'<ion-header>\n    <ion-navbar color=\'dark\'>\n      <ion-title>\n          <ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon> Favorites\n      </ion-title>\n      <ion-segment>\n          <ion-segment-button value="all">\n            All\n            </ion-segment-button>\n          <ion-segment-button value="movies">\n            Movies\n          </ion-segment-button>\n          <ion-segment-button value="series">\n            Series\n          </ion-segment-button>\n        </ion-segment>\n    </ion-navbar>\n  </ion-header>\n\n\n<ion-content padding>\n\n  <div>\n    <ion-list>\n        <ion-list *ngIf="medias.length > 0">\n\n            <ion-item-sliding #item *ngFor="let media of medias; let i = index">\n                <ion-item (click)="movieSelected(media)">\n                    <ion-thumbnail item-start>\n                        <img src="{{media.Poster}}" style="width: auto;" alt="film">\n                    </ion-thumbnail>\n                    <h2><strong>{{media.Title}}</strong></h2>\n                    <p>{{media.Year}}</p> \n                    <button ion-button clear large round color="dark"  item-end (click)="removeMedia(media)">\n                      <ion-icon name="close"></ion-icon>\n                    </button>\n                </ion-item>\n            </ion-item-sliding>\n        </ion-list>\n    </ion-list>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/news/news.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_favorites_favorites__["a" /* FavoritesProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_favorites_favorites__["a" /* FavoritesProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* ToastController */]) === "function" && _d || Object])
     ], NewsPage);
     return NewsPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=news.js.map
@@ -568,15 +590,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs_module__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_movies_movies_module__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_series_series_module__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_news_news_module__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_others_others_module__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_details_details_module__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_rest_rest__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs_module__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_movies_movies_module__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_series_series_module__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_news_news_module__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_others_others_module__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_details_details_module__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_rest_rest__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_favorites_favorites__ = __webpack_require__(289);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -598,25 +622,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */]
+                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs_module__["TabsPageModule"],
-                __WEBPACK_IMPORTED_MODULE_9__pages_movies_movies_module__["MoviesPageModule"],
-                __WEBPACK_IMPORTED_MODULE_10__pages_series_series_module__["SeriesPageModule"],
-                __WEBPACK_IMPORTED_MODULE_11__pages_news_news_module__["NewsPageModule"],
-                __WEBPACK_IMPORTED_MODULE_12__pages_others_others_module__["OthersPageModule"],
+                __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs_module__["TabsPageModule"],
+                __WEBPACK_IMPORTED_MODULE_10__pages_movies_movies_module__["MoviesPageModule"],
+                __WEBPACK_IMPORTED_MODULE_11__pages_series_series_module__["SeriesPageModule"],
+                __WEBPACK_IMPORTED_MODULE_12__pages_news_news_module__["NewsPageModule"],
+                __WEBPACK_IMPORTED_MODULE_13__pages_others_others_module__["OthersPageModule"],
                 __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_13__pages_details_details_module__["DetailsPageModule"],
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_14__pages_details_details_module__["DetailsPageModule"],
+                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/details/details.module#DetailsPageModule', name: 'DetailsPage', segment: 'details', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/movies/movies.module#MoviesPageModule', name: 'MoviesPage', segment: 'movies', priority: 'low', defaultHistory: [] },
@@ -625,18 +651,20 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/series/series.module#SeriesPageModule', name: 'SeriesPage', segment: 'series', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] }
                     ]
-                })
+                }),
+                __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot()
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */]
+                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_14__providers_rest_rest__["a" /* RestProvider */]
+                __WEBPACK_IMPORTED_MODULE_15__providers_rest_rest__["a" /* RestProvider */],
+                __WEBPACK_IMPORTED_MODULE_16__providers_favorites_favorites__["a" /* FavoritesProvider */]
             ]
         })
     ], AppModule);
@@ -728,6 +756,142 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 288:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return showToast; });
+var showToast = function (toastCtrl, message) {
+    var toast = toastCtrl.create({
+        message: message,
+        duration: 3000,
+        position: 'top'
+    });
+    toast.present();
+};
+//# sourceMappingURL=toast.js.map
+
+/***/ }),
+
+/***/ 289:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FavoritesProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_storage__ = __webpack_require__(290);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+/*
+  Generated class for the FavoritesProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var FavoritesProvider = /** @class */ (function () {
+    function FavoritesProvider(storage) {
+        this.storage = storage;
+        this.medias = new Map();
+        this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
+        console.log('Hello StorageProvider Provider');
+        this.init();
+    }
+    FavoritesProvider.prototype.addMedia = function (media) {
+        this.medias.set(media.imdbID, media);
+        this.storage.set('users_medias', this.medias);
+        this.onChange.emit(Array.from(this.medias.values()));
+    };
+    FavoritesProvider.prototype.removeMedia = function (media) {
+        this.medias.delete(media.imdbID);
+        this.storage.set('users_medias', this.medias);
+        this.onChange.emit(Array.from(this.medias.values()));
+    };
+    FavoritesProvider.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var medias, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.storage.get('user_medias')];
+                    case 1:
+                        medias = _a.sent();
+                        if (medias !== null && medias instanceof Map) {
+                            this.medias = new Map(medias);
+                            this.onChange.emit(Array.from(this.medias.values()));
+                        }
+                        else {
+                            this.medias = new Map();
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    FavoritesProvider.prototype.load = function () {
+        this.onChange.emit(Array.from(this.medias.values()));
+    };
+    FavoritesProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]) === "function" && _a || Object])
+    ], FavoritesProvider);
+    return FavoritesProvider;
+    var _a;
+}());
+
+//# sourceMappingURL=favorites.js.map
+
+/***/ }),
+
 /***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -750,6 +914,7 @@ var RestProvider = /** @class */ (function () {
     function RestProvider(http) {
         this.http = http;
         this.apiUrl = 'http://www.omdbapi.com/?apikey=75522b56';
+        this.apiUrlImage = 'http://img.omdbapi.com/?apikey=75522b56';
         console.log('Hello RestServiceProvider Provider');
     }
     RestProvider.prototype.getMovies = function (event) {
@@ -785,11 +950,23 @@ var RestProvider = /** @class */ (function () {
             });
         });
     };
+    RestProvider.prototype.getImage = function (id) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.apiUrlImage + '&h=600&i=' + id)
+                .subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     RestProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], RestProvider);
     return RestProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=rest.js.map
@@ -801,9 +978,10 @@ var RestProvider = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetailsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_favorites_favorites__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -816,6 +994,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the DetailsPage page.
  *
@@ -823,10 +1002,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var DetailsPage = /** @class */ (function () {
-    function DetailsPage(navCtrl, navParams, restProvider) {
+    function DetailsPage(navCtrl, navParams, restProvider, FavoritesProvider) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.restProvider = restProvider;
+        this.FavoritesProvider = FavoritesProvider;
         var movie = this.navParams.get('movie');
         this.movie = movie;
         this.id = movie.imdbID;
@@ -843,13 +1023,24 @@ var DetailsPage = /** @class */ (function () {
             console.log(_this.movie);
         });
     };
+    DetailsPage.prototype.getImage = function (id) {
+        var _this = this;
+        this.restProvider.getImage(id)
+            .then(function (image) {
+            console.log(_this.image);
+        });
+    };
+    DetailsPage.prototype.addToFavorites = function () {
+        this.FavoritesProvider.addMedia(this.movie);
+    };
     DetailsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-details',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/'<ion-header class=\'de\'>\n\n  <ion-navbar color=\'dark\'>\n    <ion-title>\n      {{movie.Title}}\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n  \n\n\n    <ion-content class=\'page-content\' padding>\n\n      <ion-card *ngIf="this.movie; let movie">\n        <img src="{{movie.Poster}}">\n    \n        <div class="card-subtitle">\n          <ion-list>\n            <ion-item class="item-info">\n              <ion-badge class="badge-info" item-start>{{movie.Genre}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Director}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Actors}}</ion-badge>\n            </ion-item>\n          </ion-list>\n    \n          <ion-row class="small-padding">\n              <ion-col>\n                  <button ion-button clear small color="danger" icon-start>\n                    <ion-icon name=\'trophy\'></ion-icon>\n                    <strong>{{movie.Awards}}</strong>\n                  </button>\n                </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'star-half\'></ion-icon>\n                <strong>{{movie.imdbRating}}/10</strong><i>({{movie.imdbVotes}}votes)</i>\n              </button>\n            </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'calendar\'></ion-icon>\n              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}}S)</i>\n              </button>\n            </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'close-circle\'></ion-icon>\n                {{movie.Rated}}\n              </button>\n            </ion-col>\n          </ion-row>\n        </div>\n        <ion-card-content>\n          {{movie.Plot}}\n        </ion-card-content>\n    \n        <ion-row>\n            <ion-col text-left>\n                <a href="#" ion-button clear small color="danger" icon-start>\n                  <ion-icon name=\'bookmark\'></ion-icon>\n                  Add To Favorites\n                </a>\n              </ion-col>\n          <ion-col text-right>\n            <a href="{{movie.Website}}" ion-button clear small color="danger" icon-start>\n              <ion-icon name=\'link\'></ion-icon>\n              Get More Details\n            </a>\n          </ion-col>\n        </ion-row>\n    \n      </ion-card>\n    \n    </ion-content>\n    \n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
+            selector: 'page-details',template:/*ion-inline-start:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/'<ion-header class=\'de\'>\n\n  <ion-navbar color=\'dark\'>\n    <ion-title>\n      {{movie.Title}}\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n  \n\n\n    <ion-content class=\'page-content\' padding>\n\n      <ion-card *ngIf="this.movie; let movie">\n        <img src="{{movie.Poster}}">\n    \n        <div class="card-subtitle">\n          <ion-list>\n            <ion-item class="item-info">\n              <ion-badge class="badge-info" item-start>{{movie.Genre}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Director}}</ion-badge>\n            </ion-item>\n            <ion-item class="item-info">\n              <ion-badge  item-start class="badge-info">{{movie.Actors}}</ion-badge>\n            </ion-item>\n          </ion-list>\n    \n          <ion-row class="small-padding">\n              <ion-col>\n                  <button ion-button clear small color="danger" icon-start>\n                    <ion-icon name=\'trophy\'></ion-icon>\n                    <strong>{{movie.Awards}}</strong>\n                  </button>\n                </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'star-half\'></ion-icon>\n                <strong>{{movie.imdbRating}}/10</strong><i>({{movie.imdbVotes}}votes)</i>\n              </button>\n            </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'calendar\'></ion-icon>\n              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}}S)</i>\n              </button>\n            </ion-col>\n            <ion-col>\n              <button ion-button clear small color="danger" icon-start>\n                <ion-icon name=\'close-circle\'></ion-icon>\n                {{movie.Rated}}\n              </button>\n            </ion-col>\n          </ion-row>\n        </div>\n        <ion-card-content>\n          {{movie.Plot}}\n        </ion-card-content>\n    \n        <ion-row>\n            <ion-col text-left>\n                <button (click)="addToFavorites(movie)" ion-button clear small color="danger" icon-start>\n                  <ion-icon name=\'bookmark\'></ion-icon>\n                  Add To Favorites\n                </button>\n              </ion-col>\n          <ion-col text-right>\n            <a href="{{movie.Website}}" ion-button clear small color="danger" icon-start>\n              <ion-icon name=\'link\'></ion-icon>\n              Get More Details\n            </a>\n          </ion-col>\n        </ion-row>\n    \n      </ion-card>\n    \n    </ion-content>\n    \n'/*ion-inline-end:"/Users/arnaud-barriol/abar-UltimateMovieScrapper/src/pages/details/details.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__providers_favorites_favorites__["a" /* FavoritesProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_favorites_favorites__["a" /* FavoritesProvider */]) === "function" && _d || Object])
     ], DetailsPage);
     return DetailsPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=details.js.map

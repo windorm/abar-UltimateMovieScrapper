@@ -5,6 +5,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -15,6 +16,7 @@ import { NewsPageModule } from '../pages/news/news.module';
 import { OthersPageModule } from '../pages/others/others.module';
 import { DetailsPageModule } from '../pages/details/details.module';
 import { RestProvider } from '../providers/rest/rest';
+import { FavoritesProvider } from '../providers/favorites/favorites';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { RestProvider } from '../providers/rest/rest';
     HttpClientModule,
     DetailsPageModule,
     
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +46,8 @@ import { RestProvider } from '../providers/rest/rest';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    FavoritesProvider
   ]
 })
 export class AppModule {}

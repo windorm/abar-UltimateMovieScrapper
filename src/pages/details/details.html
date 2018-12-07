@@ -61,10 +61,10 @@
     
         <ion-row>
             <ion-col text-left>
-                <a href="#" ion-button clear small color="danger" icon-start>
+                <button (click)="addToFavorites(movie)" ion-button clear small color="danger" icon-start>
                   <ion-icon name='bookmark'></ion-icon>
                   Add To Favorites
-                </a>
+                </button>
               </ion-col>
           <ion-col text-right>
             <a href="{{movie.Website}}" ion-button clear small color="danger" icon-start>

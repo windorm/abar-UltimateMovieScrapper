@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 export class RestProvider {
 
   apiUrl = 'http://www.omdbapi.com/?apikey=75522b56';
+  apiUrlImage = 'http://img.omdbapi.com/?apikey=75522b56';
 
   constructor(public http: HttpClient) {
     console.log('Hello RestServiceProvider Provider');
@@ -42,4 +43,15 @@ export class RestProvider {
       });
     });
   }
+
+  getImage(id) {
+    return new Promise(resolve => {
+        this.http.get(this.apiUrlImage+'&h=600&i='+id)
+        .subscribe(data => {
+            resolve(data);
+        }, err => {
+            console.log(err);
+        });
+    });
+}
 }

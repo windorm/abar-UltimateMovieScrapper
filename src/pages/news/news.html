@@ -3,10 +3,41 @@
       <ion-title>
           <ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon> Favorites
       </ion-title>
+      <ion-segment>
+          <ion-segment-button value="all">
+            All
+            </ion-segment-button>
+          <ion-segment-button value="movies">
+            Movies
+          </ion-segment-button>
+          <ion-segment-button value="series">
+            Series
+          </ion-segment-button>
+        </ion-segment>
     </ion-navbar>
   </ion-header>
 
 
 <ion-content padding>
+
+  <div>
+    <ion-list>
+        <ion-list *ngIf="medias.length > 0">
+
+            <ion-item-sliding #item *ngFor="let media of medias; let i = index">
+                <ion-item (click)="movieSelected(media)">
+                    <ion-thumbnail item-start>
+                        <img src="{{media.Poster}}" style="width: auto;" alt="film">
+                    </ion-thumbnail>
+                    <h2><strong>{{media.Title}}</strong></h2>
+                    <p>{{media.Year}}</p> 
+                    <button ion-button clear large round color="dark"  item-end (click)="removeMedia(media)">
+                      <ion-icon name="close"></ion-icon>
+                    </button>
+                </ion-item>
+            </ion-item-sliding>
+        </ion-list>
+    </ion-list>
+  </div>
 
 </ion-content>
