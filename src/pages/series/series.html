@@ -1,8 +1,14 @@
 <ion-header>
     <ion-navbar color='dark'>
-      <ion-title>Series</ion-title>
+      <ion-title>
+          <ion-icon ios="ios-albums" md="md-albums"></ion-icon> Series
+      </ion-title>
     </ion-navbar>
-    <ion-searchbar animated="true" [(ngModel)]="selectedTitle" (ionInput)="getSeries($event)" [showCancelButton]="false" ></ion-searchbar>
+    <ion-searchbar
+    animated="true"
+    (ionInput)="getSeries($event)"
+    [showCancelButton]="false">
+  </ion-searchbar>
   </ion-header>
   
   <ion-content padding class='page-content'>

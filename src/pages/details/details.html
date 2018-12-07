@@ -29,16 +29,22 @@
           </ion-list>
     
           <ion-row class="small-padding">
+              <ion-col>
+                  <button ion-button clear small color="danger" icon-start>
+                    <ion-icon name='trophy'></ion-icon>
+                    <strong>{{movie.Awards}}</strong>
+                  </button>
+                </ion-col>
             <ion-col>
               <button ion-button clear small color="danger" icon-start>
                 <ion-icon name='star-half'></ion-icon>
                 <strong>{{movie.imdbRating}}/10</strong><i>({{movie.imdbVotes}}votes)</i>
               </button>
             </ion-col>
-            <ion-col text-center>
+            <ion-col>
               <button ion-button clear small color="danger" icon-start>
                 <ion-icon name='calendar'></ion-icon>
-              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}})</i>
+              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}}S)</i>
               </button>
             </ion-col>
             <ion-col>
