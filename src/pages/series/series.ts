@@ -18,6 +18,8 @@ import { RestProvider } from '../../providers/rest/rest';
 export class SeriesPage {
 
   movies: any;
+  
+  public isSearchbarOpened = false;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider) { }
 

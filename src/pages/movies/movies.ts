@@ -12,6 +12,7 @@ export class MoviesPage {
 
   movies: any;
 
+  public isSearchbarOpened = false;
   constructor(public navCtrl: NavController, public restProvider: RestProvider) { }
 
   getMovies(event) {
@@ -31,5 +32,6 @@ export class MoviesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoviesPage');
   }
+
 
 }

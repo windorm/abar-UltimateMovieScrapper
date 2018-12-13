@@ -1,14 +1,16 @@
 <ion-header>
     <ion-navbar color='dark'>
       <ion-title>
-          <ion-icon ios="ios-albums" md="md-albums"></ion-icon> Series
+          <ion-icon name="albums"></ion-icon> Series
       </ion-title>
-    </ion-navbar>
-    <ion-searchbar
-    animated="true"
-    (ionInput)="getSeries($event)"
-    [showCancelButton]="false">
-  </ion-searchbar>
+      <ion-searchbar *ngIf="isSearchbarOpened" (ionInput)="getSeries($event)" showCancelButton="true" (ionCancel)="isSearchbarOpened=false">
+        </ion-searchbar>
+      <ion-buttons end>
+        <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      </ion-buttons>
+      </ion-navbar>
   </ion-header>
   
   <ion-content padding class='page-content'>
