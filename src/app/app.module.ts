@@ -1,3 +1,5 @@
+import { PipesModule } from './../pipes/pipes.module';
+import { ExportPopoverPageModule } from './../pages/export-popover/export-popover.module';
 import { DetailsPage } from './../pages/details/details';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,6 +8,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -17,7 +20,8 @@ import { OthersPageModule } from '../pages/others/others.module';
 import { DetailsPageModule } from '../pages/details/details.module';
 import { RestProvider } from '../providers/rest/rest';
 import { FavoritesProvider } from '../providers/favorites/favorites';
-
+import { ExportPopoverPage } from "../pages/export-popover/export-popover";
+import { SeasonpipePipe } from "../pipes/seasonpipe/seasonpipe";
 
 @NgModule({
   declarations: [
@@ -33,7 +37,7 @@ import { FavoritesProvider } from '../providers/favorites/favorites';
     OthersPageModule,
     HttpClientModule,
     DetailsPageModule,
-    
+    ExportPopoverPageModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -47,7 +51,9 @@ import { FavoritesProvider } from '../providers/favorites/favorites';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    FavoritesProvider
+    ExportPopoverPage,
+    FavoritesProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}
