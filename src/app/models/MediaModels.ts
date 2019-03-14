@@ -25,4 +25,8 @@ export interface MediasModel {
     Writer: string;
     imdbRating: string;
     imdbVotes: string;
+    totalSeasons: string;
+    Episode:string;
+    Episodes: string;
+    Season: string;
 }

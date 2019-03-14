@@ -16,7 +16,7 @@
         <img src="{{movie.Poster}}">
         <ion-row>
         <ion-col text-center>
-            <button ion-button clear small color="danger" icon-start >
+            <button ion-button clear small color="danger" icon-start (click)="shareImageHD(urlHDimage)">
               <ion-icon name='image'></ion-icon>
               HD Poster
             </button>
@@ -66,7 +66,23 @@
         <ion-card-content>
           {{movie.Plot}}
         </ion-card-content>
+        <ion-list>
+        <ion-item *ngIf="movie.Type == 'series'">
+          Saisons {{movie.totalSeasons}}
+          <button ion-button clear item-end (click)="openSeasonList()"> <ion-icon clear large name="eye"></ion-icon></button>
+        </ion-item>
+      </ion-list>
     
+
+      <ion-list [hidden]="!seasonsList">
+        <ion-item *ngIf="movie.Type == 'series'">
+          <ion-select>
+            <ion-option >{{season}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+
         <ion-row>
             <ion-col text-left>
                 <button (click)="addToFavorites(movie)" ion-button clear small color="danger" icon-start>

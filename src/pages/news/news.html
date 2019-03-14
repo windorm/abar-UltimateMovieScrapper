@@ -25,13 +25,9 @@
         <ion-list *ngIf="medias.length >= 1">
             <ion-row>
                 <ion-col text-center>
-                  <button round color='dark' ion-button icon-start>
+                  <button round color='dark' ion-button icon-start (click)="showExportPopover()">
                     <ion-icon name="cloud-upload"></ion-icon>
-                    CSV
-                  </button>
-                  <button round color='dark' ion-button icon-start>
-                  <ion-icon name="cloud-upload"></ion-icon>
-                    JSON
+                    CSV/JSON
                   </button>
                   <button round color='dark' ion-button>
                   <ion-icon name="cloud-download"></ion-icon>
