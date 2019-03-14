@@ -1,0 +1,105 @@
+<ion-header class='de'>
+
+  <ion-navbar color='dark'>
+    <ion-title>
+      {{movie.Title}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+  
+
+
+    <ion-content class='page-content' padding>
+
+      <ion-card *ngIf="this.movie; let movie">
+        <img src="{{movie.Poster}}">
+        <ion-row>
+        <ion-col text-center>
+            <button ion-button clear small color="danger" icon-start (click)="shareImageHD(urlHDimage)">
+              <ion-icon name='image'></ion-icon>
+              HD Poster
+            </button>
+          </ion-col>
+        </ion-row>
+    
+        <div class="card-subtitle">
+          <ion-list>
+            <ion-item class="item-info">
+              <ion-badge class="badge-info" item-start>{{movie.Genre}}</ion-badge>
+            </ion-item>
+            <ion-item class="item-info">
+              <ion-badge  item-start class="badge-info">{{movie.Director}}</ion-badge>
+            </ion-item>
+            <ion-item class="item-info">
+              <ion-badge  item-start class="badge-info">{{movie.Actors}}</ion-badge>
+            </ion-item>
+          </ion-list>
+    
+          <ion-row class="small-padding">
+              <ion-col>
+                  <button ion-button clear small color="danger" icon-start>
+                    <ion-icon name='trophy'></ion-icon>
+                    <strong>{{movie.Awards}}</strong>
+                  </button>
+                </ion-col>
+            <ion-col>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='star-half'></ion-icon>
+                <strong>{{movie.imdbRating}}/10</strong><i>({{movie.imdbVotes}}votes)</i>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='calendar'></ion-icon>
+              <strong>{{movie.Released}}</strong><i>({{movie.Runtime}}S)</i>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='close-circle'></ion-icon>
+                {{movie.Rated}}
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-card-content>
+          {{movie.Plot}}
+        </ion-card-content>
+        <ion-list>
+        <ion-item *ngIf="movie.Type == 'series'">
+          Saisons {{movie.totalSeasons}}
+          <button ion-button clear item-end (click)="openSeasonList()"> <ion-icon clear large name="eye"></ion-icon></button>
+        </ion-item>
+      </ion-list>
+    
+
+      <ion-list [hidden]="!seasonsList">
+        <ion-item *ngIf="movie.Type == 'series'">
+          <ion-select>
+            <ion-option >{{season}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+
+        <ion-row>
+            <ion-col text-left>
+                <button (click)="addToFavorites(movie)" ion-button clear small color="danger" icon-start>
+                  <ion-icon name='bookmark'></ion-icon>
+                  Add To Favorites
+                </button>
+              </ion-col>
+              
+          <ion-col text-right>
+            <a href="{{movie.Website}}" ion-button clear small color="danger" icon-start>
+              <ion-icon name='link'></ion-icon>
+              Get More Details
+            </a>
+          </ion-col>
+        </ion-row>
+    
+      </ion-card>
+    
+    </ion-content>
+    

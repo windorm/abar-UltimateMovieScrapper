@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar color='dark'>
+      <ion-title>
+          <ion-icon name="bookmark"></ion-icon> Favorites
+      </ion-title>
+      <ion-segment>
+          <ion-segment-button value="all">
+            All
+            </ion-segment-button>
+          <ion-segment-button value="movies">
+            Movies
+          </ion-segment-button>
+          <ion-segment-button value="series">
+            Series
+          </ion-segment-button>
+        </ion-segment>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+
+  <div>
+    <ion-list>
+        <ion-list *ngIf="medias.length >= 1">
+            <ion-row>
+                <ion-col text-center>
+                  <button round color='dark' ion-button icon-start (click)="showExportPopover()">
+                    <ion-icon name="cloud-upload"></ion-icon>
+                    CSV/JSON
+                  </button>
+                  <button round color='dark' ion-button>
+                  <ion-icon name="cloud-download"></ion-icon>
+                    
+                  </button>
+              </ion-col>
+            </ion-row>
+            <ion-item #item *ngFor="let media of medias; let i = index">
+                <ion-item (click)="movieSelected(media)">
+                    <ion-thumbnail item-start>
+                        <img src="{{media.Poster}}" style="width: auto;">
+                    </ion-thumbnail>
+                    <h2><strong>{{media.Title}}</strong></h2>
+                    <p>{{media.Year}}</p> 
+                    <button ion-button clear large round color="dark"  item-end (click)="removeMedia(media)">
+                      <ion-icon name="close"></ion-icon>
+                    </button>
+                </ion-item>
+            </ion-item>
+        </ion-list>
+    </ion-list>
+  </div>
+
+</ion-content>
